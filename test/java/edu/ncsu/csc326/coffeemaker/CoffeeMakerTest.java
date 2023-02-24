@@ -54,7 +54,7 @@ public class CoffeeMakerTest {
     public void EditRecipeTest() {
         cm.addRecipe(r1);
         cm.addRecipe(r2);
-        cm.editRecipe(0, r1);
+        cm.editRecipe(0, r2);
     }
     @Test
     public void testCheckInventory() {
