@@ -213,13 +213,13 @@ public void editRecipe(){
     rb.addRecipe(r2);
     rb.addRecipe(r3);
 
-    String s = rb.editRecipe(3,r4);
+    String s = rb.editRecipe(2,r4);
 
     assertEquals(r3.getName(),s);
 
     Recipe[] rarr = rb.getRecipes();
 
-    assertEquals(rarr[3],r3);
+    assertEquals(rarr[2],r4);
 
 }
 
