@@ -123,7 +123,8 @@ public class Recipe {
 	 * @param name   The name to set.
 	 */
     public void setName(String name) {
-    	if(name != null) {
+		//Added isBlank check to avoid blank/empty name
+    	if(name != null && !(name.isBlank())) {
     		this.name = name;
     	}
 	}
