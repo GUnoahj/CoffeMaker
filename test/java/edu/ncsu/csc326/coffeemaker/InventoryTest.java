@@ -40,6 +40,15 @@ public class InventoryTest extends TestCase {
     }
 
     @Test
+    public void testChocolateException() {
+        assertThrows(
+                InventoryException.class, () -> {
+                    inventory.addChocolate("-9"); // Should throw an InventoryException
+                }
+        );
+    }
+
+    @Test
     public void testGetCoffee() {
         assertEquals(15, inventory.getCoffee());
     }
@@ -54,6 +63,15 @@ public class InventoryTest extends TestCase {
     public void testAddCoffee() throws InventoryException {
         inventory.addCoffee("3");
         assertEquals(18, inventory.getCoffee());
+    }
+
+    @Test
+    public void testCoffeeException() {
+        assertThrows(
+                InventoryException.class, () -> {
+                    inventory.addCoffee("-9"); // Should throw an InventoryException
+                }
+        );
     }
 
     @Test
@@ -74,6 +92,15 @@ public class InventoryTest extends TestCase {
     }
 
     @Test
+    public void testMilkException() {
+        assertThrows(
+                InventoryException.class, () -> {
+                    inventory.addMilk("-9"); // Should throw an InventoryException
+                }
+        );
+    }
+
+    @Test
     public void testGetSugar() {
         assertEquals(15, inventory.getSugar());
     }
@@ -91,6 +118,15 @@ public class InventoryTest extends TestCase {
     }
 
     @Test
+    public void testSugarException() {
+        assertThrows(
+                InventoryException.class, () -> {
+                    inventory.addSugar("-9"); // Should throw an InventoryException
+                }
+        );
+    }
+
+    @Test
     public void testEnoughIngredients() throws RecipeException {
         Recipe r1 = new Recipe();
         r1.setName("Coffee");
@@ -101,6 +137,24 @@ public class InventoryTest extends TestCase {
         r1.setPrice("99");
 
         assertEquals(false, inventory.enoughIngredients(r1));
+    }
+
+    @Test
+    public void testEnoughIngredientsException() {
+
+
+        assertThrows(
+                RecipeException.class, () -> {
+                    Recipe r1 = new Recipe();
+                    r1.setName("Coffee");
+                    r1.setAmtChocolate("-9");
+                    r1.setAmtCoffee("-9");
+                    r1.setAmtMilk("-9");
+                    r1.setAmtSugar("-9");
+                    r1.setPrice("-9");
+                    inventory.enoughIngredients(r1);
+                }
+        );
     }
 
     @Test
@@ -118,6 +172,22 @@ public class InventoryTest extends TestCase {
         assertEquals(10, inventory.getCoffee());
         assertEquals(10, inventory.getMilk());
         assertEquals(10, inventory.getSugar());
+    }
+
+    @Test
+    public void testUseIngredientsException() {
+        assertThrows(
+                RecipeException.class, () -> {
+                    Recipe r1 = new Recipe();
+                    r1.setName("Coffee");
+                    r1.setAmtChocolate("-9");
+                    r1.setAmtCoffee("-9");
+                    r1.setAmtMilk("-9");
+                    r1.setAmtSugar("-9");
+                    r1.setPrice("-9");
+                    inventory.useIngredients(r1);
+                }
+        );
     }
 
 }

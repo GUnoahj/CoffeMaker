@@ -54,4 +54,66 @@ public class CoffeeMakerTest {
     public void EditRecipeTest() {
 
     }
+    @Test
+    public void testCheckInventory() {
+    StringBuffer buf = new StringBuffer();
+        buf.append("Coffee: ");
+    	buf.append(15);
+    	buf.append("\n");
+    	buf.append("Milk: ");
+    	buf.append(15);
+    	buf.append("\n");
+    	buf.append("Sugar: ");
+    	buf.append(15);
+    	buf.append("\n");
+    	buf.append("Chocolate: ");
+    	buf.append(15);
+    	buf.append("\n");
+
+        assertEquals(buf.toString(), cm.checkInventory());
+    }
+    @Test
+    public void testAddInventory() {
+        StringBuffer buf = new StringBuffer();
+
+        buf.append("Coffee: ");
+        buf.append(16);
+        buf.append("\n");
+        buf.append("Milk: ");
+        buf.append(17);
+        buf.append("\n");
+        buf.append("Sugar: ");
+        buf.append(18);
+        buf.append("\n");
+        buf.append("Chocolate: ");
+        buf.append(19);
+        buf.append("\n");
+        try {
+            cm.addInventory("1", "2", "3", "4");
+        }
+        catch (InventoryException e) {
+            fail("Not good");
+        }
+        assertEquals(buf.toString(), cm.checkInventory());
+    }
+    @Test
+    public void testAddInventoryException() {
+        assertThrows(InventoryException.class, () -> cm.addInventory("-1", "-2", "-3", "-4"));
+    }
+
+    @Test
+    public void testMakeCoffee() {
+        cm.addRecipe(r1);
+        assertEquals(0, cm.makeCoffee(0, 50));
+        assertEquals(10, cm.makeCoffee(0, 60));
+        assertEquals(40, cm.makeCoffee(0, 40));
+    }
+
+    @Test
+    public void testGetRecipes() {
+        cm.addRecipe(r1);
+        cm.addRecipe(r2);
+        Recipe[] arr = {r1, r2, null, null};
+        assertArrayEquals(arr, cm.getRecipes());
+    }
 }
