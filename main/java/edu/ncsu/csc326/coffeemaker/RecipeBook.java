@@ -57,7 +57,14 @@ public class RecipeBook {
 	public synchronized String deleteRecipe(int recipeToDelete) {
 		if (recipeArray[recipeToDelete] != null) {
 			String recipeName = recipeArray[recipeToDelete].getName();
-			recipeArray[recipeToDelete] = new Recipe();
+			//recipeArray[recipeToDelete] = new Recipe();
+			//Move each recipe -1 index except if we delete last index
+			for (int i = recipeToDelete; i < recipeArray.length-1; i++) {
+				if (i <= recipeArray.length-1) {
+					recipeArray[i] = null;
+				}
+				recipeArray[i] = recipeArray[i+1];
+			}
 			return recipeName;
 		} else {
 			return null;
