@@ -60,10 +60,12 @@ public class RecipeBook {
 			//recipeArray[recipeToDelete] = new Recipe();
 			//Move each recipe -1 index except if we delete last index
 			for (int i = recipeToDelete; i < recipeArray.length-1; i++) {
-				if (i <= recipeArray.length-1) {
-					recipeArray[i] = null;
-				}
 				recipeArray[i] = recipeArray[i+1];
+
+				if (i == recipeArray.length-2) {
+					recipeArray[i+1] = null;
+				}
+
 			}
 			return recipeName;
 		} else {
@@ -81,8 +83,6 @@ public class RecipeBook {
 	public synchronized String editRecipe(int recipeToEdit, Recipe newRecipe) {
 		if (recipeArray[recipeToEdit] != null) {
 			String recipeName = recipeArray[recipeToEdit].getName();
-			//TODO: WHY SET TO BLANK? -Wojtek
-			newRecipe.setName("");
 			recipeArray[recipeToEdit] = newRecipe;
 			return recipeName;
 		} else {
