@@ -69,10 +69,9 @@ public void setUp() throws Exception{
 
 }
 
-//getEmpty recipies
-@Test
-public void getEmpty(){
 
+@Test
+public void testGetEmptyRecipes(){
     Recipe[] rec_arr = rb.getRecipes();
     
     //check array size
@@ -84,9 +83,9 @@ public void getEmpty(){
 }
 
 
-//deleteEmpty
+
 @Test
-public void deleteEmpty(){
+public void testDeleteNotInserted(){
     String str = rb.deleteRecipe(0);
     
     //check array size
@@ -95,9 +94,9 @@ public void deleteEmpty(){
 }
 
 
-//editEmpty
+
 @Test
-public void editEmpty(){
+public void testEditNotInserted(){
     String str = rb.editRecipe(0,r5);
     
     //check array size
@@ -105,22 +104,26 @@ public void editEmpty(){
 }
 
 
-//addRecipe
+
 @Test
-public void addNewRecipe(){
+public void testAddRecipe(){
     boolean b = rb.addRecipe(r1);
     
+    assertEquals(true,b);
+
+    b = rb.addRecipe(r2);
     assertEquals(true,b);
 
     Recipe[] rarr = rb.getRecipes();
 
     assertEquals(rarr[0],r1);
-    assertEquals(rarr[1],null);
+    assertEquals(rarr[1],r2);
+    assertEquals(rarr[2],null);
 }
 
-//addDuplicate
+
 @Test
-public void addDuplicate(){
+public void testAddDuplicate(){
     boolean b = rb.addRecipe(r1);
     assertEquals(true,b);
 
@@ -137,9 +140,9 @@ public void addDuplicate(){
 }
 
 
-//addMoreThanLimit
+
 @Test
-public void addMoreThanLimit(){
+public void testAddMoreThanLimit(){
     boolean b = rb.addRecipe(r1);
     assertEquals(true,b);
 
@@ -156,9 +159,9 @@ public void addMoreThanLimit(){
     assertEquals(false,b);
 }
 
-//getAllRecipies
+
 @Test
-public void getAllRecipies(){
+public void testGetAllRecipes(){
      rb.addRecipe(r1);
      rb.addRecipe(r2);
      rb.addRecipe(r3);
@@ -175,7 +178,7 @@ public void getAllRecipies(){
 
 
 @Test
-public void deleteRecipe(){
+public void testDeleteRecipe(){
     rb.addRecipe(r1);
     rb.addRecipe(r2);
     rb.addRecipe(r3);
@@ -194,21 +197,12 @@ public void deleteRecipe(){
     }
 }
 
-//deleteNotInsertedRecipe
+
+
+
+
 @Test
-public void deleteNotInserted(){
-    rb.addRecipe(r1);
-    rb.addRecipe(r2);
-    rb.addRecipe(r3);
-
-    String s = rb.deleteRecipe(3);
-
-    assertEquals(null,s);
-}
-
-//editRecipe
-@Test
-public void editRecipe(){
+public void testEditRecipe(){
     rb.addRecipe(r1);
     rb.addRecipe(r2);
     rb.addRecipe(r3);
