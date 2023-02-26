@@ -46,14 +46,10 @@ public class RecipeTest {
     }
     @Test
     public void testFailSetName() {
-        //setName method only checks for null value, not empty string
-        /*String oldName = r1.getName();
+        String oldName = r1.getName();
         String newName = "";
         r1.setName(newName);
         assertEquals(oldName, r1.getName());
-         */
-        assertThrows(RecipeException.class, () -> r1.setName(""));
-        assertThrows(RecipeException.class, () -> r1.setName(null));
 
     }
     @Test
