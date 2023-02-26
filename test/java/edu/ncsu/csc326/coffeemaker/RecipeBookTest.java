@@ -184,7 +184,7 @@ public void testDeleteRecipe(){
     rb.addRecipe(r3);
     rb.addRecipe(r4);
 
-    Recipe[] test = {r1,r2,r4,null};
+    Recipe[] test = {r1,r2,null,r4};
 
     String s = rb.deleteRecipe(2);
 
