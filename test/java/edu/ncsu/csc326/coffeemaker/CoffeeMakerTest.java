@@ -101,6 +101,7 @@ public class CoffeeMakerTest {
     @Test
     public void testAddInventoryException() {
         assertThrows(InventoryException.class, () -> cm.addInventory("-1", "-2", "-3", "-4"));
+        assertThrows(InventoryException.class, () -> cm.addInventory("asd", "fgh", "zxc", "åäö"));
     }
 
     @Test
