@@ -96,7 +96,7 @@ public class RecipeTest {
         catch (RecipeException e) {
             fail("Not good");
         }
-        assertEquals(4, r1.getAmtMilk());
+        assertEquals(4, r1.getAmtSugar());
     }
     @Test
     public void testSetAmtSugarException() {
@@ -121,7 +121,6 @@ public class RecipeTest {
         int hash = 31 + (r1.getName().hashCode());
         assertEquals(hash, r1.hashCode());
     }
-
     @Test
     public void getNameTest() {
         assertEquals("Coffee", r1.getName());
