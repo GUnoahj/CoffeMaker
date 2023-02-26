@@ -215,7 +215,7 @@ public void testEditRecipe(){
 
     Recipe[] rarr = rb.getRecipes();
 
-    assertEquals(rarr[2],oldName);
+    assertEquals(rarr[2].getName(),oldName);
 
 }
 
