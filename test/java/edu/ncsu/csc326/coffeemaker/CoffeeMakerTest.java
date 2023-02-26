@@ -47,8 +47,10 @@ public class CoffeeMakerTest {
     public void deleteRecipeTest() {
         cm.addRecipe(r1);
         cm.addRecipe(r2);
+
         //Index 0 because when user is asked for input they -1 before calling the method...
         assertEquals("Coffee", cm.deleteRecipe(0));
+        assertEquals(null, cm.getRecipes()[0]);
     }
     @Test
     public void EditRecipeTest() {
