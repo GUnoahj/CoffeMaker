@@ -49,6 +49,7 @@ public class RecipeTest {
         String newName = "";
         r1.setName(newName);
         assertEquals(oldName, r1.getName());
+
     }
     @Test
     public void testSetAmtChocolate() {
