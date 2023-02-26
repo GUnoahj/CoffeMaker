@@ -41,12 +41,7 @@ public class RecipeTest {
     @Test
     public void testSetName() {
         String newName = "NewCoffeeName";
-        try {
-            r1.setName(newName);
-        }
-        catch (RecipeException e) {
-            fail("Not good");
-        }
+        r1.setName(newName);
         assertEquals(newName, r1.getName());
     }
     @Test
