@@ -31,7 +31,6 @@ public class RecipeTest {
         r2.setPrice("15");
 
         r3 = new Recipe();
-        r3.setName("NotCoffee");
         r3.setAmtChocolate("0");
         r3.setAmtMilk("1");
         r3.setAmtCoffee("2");
@@ -140,6 +139,7 @@ public class RecipeTest {
         String str = "TEST";
        assertFalse(r1.equals(str));
        assertTrue(r1.equals(r2));
+       assertFalse(r3.equals(r1));
     }
     @Test
     public void testToString() {
