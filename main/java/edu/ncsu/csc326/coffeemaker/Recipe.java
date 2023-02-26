@@ -124,12 +124,13 @@ public class Recipe {
 	 */
     public void setName(String name) throws RecipeException {
 		//Added isBlank check to avoid blank/empty name
+		//And added an exception being thrown if it is.
 			if(name != null && !(name.isBlank())) {
 				this.name = name;
 				return;
 		}
 			else
-				throw new RecipeException("Name cannot be empty");
+				throw new RecipeException("Recipe name cannot be empty");
 	}
     /**
 	 * @return   Returns the price.

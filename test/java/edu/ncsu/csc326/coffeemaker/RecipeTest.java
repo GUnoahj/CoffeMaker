@@ -2,16 +2,16 @@ package edu.ncsu.csc326.coffeemaker;
 
 import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class RecipeTest {
 
     private Recipe r1;
-
+    private Recipe r2;
+    private Recipe r3;
     @Before
     public void setUp() throws Exception{
         r1 = new Recipe();
@@ -21,6 +21,22 @@ public class RecipeTest {
         r1.setAmtCoffee("2");
         r1.setAmtSugar("3");
         r1.setPrice("15");
+
+        r2 = new Recipe();
+        r2.setName("Coffee");
+        r2.setAmtChocolate("0");
+        r2.setAmtMilk("1");
+        r2.setAmtCoffee("2");
+        r2.setAmtSugar("3");
+        r2.setPrice("15");
+
+        r3 = new Recipe();
+        r3.setName("NotCoffee");
+        r3.setAmtChocolate("0");
+        r3.setAmtMilk("1");
+        r3.setAmtCoffee("2");
+        r3.setAmtSugar("3");
+        r3.setPrice("15");
     }
     @Test
     public void testSetName() {
@@ -58,6 +74,8 @@ public class RecipeTest {
     @Test
     public void testSetAmtChocolateException() {
         assertThrows(RecipeException.class, () -> r1.setAmtChocolate("-1"));
+        assertThrows(RecipeException.class, () -> r1.setAmtChocolate("text"));
+
     }
     @Test
     public void testSetAmtCoffee() {
@@ -72,6 +90,7 @@ public class RecipeTest {
     @Test
     public void testSetAmtCoffeeException() {
         assertThrows(RecipeException.class, () -> r1.setAmtCoffee("-2"));
+        assertThrows(RecipeException.class, () -> r1.setAmtCoffee("text"));
     }
     @Test
     public void testSetAmtMilk() {
@@ -87,6 +106,7 @@ public class RecipeTest {
     @Test
     public void testSetAmtMilkException() {
         assertThrows(RecipeException.class, () -> r1.setAmtMilk("-3"));
+        assertThrows(RecipeException.class, () -> r1.setAmtMilk("text"));
     }
     @Test
     public void testSetAmtSugar() {
@@ -100,7 +120,8 @@ public class RecipeTest {
     }
     @Test
     public void testSetAmtSugarException() {
-        assertThrows(RecipeException.class, () -> r1.setAmtMilk("-4"));
+        assertThrows(RecipeException.class, () -> r1.setAmtSugar("-4"));
+        assertThrows(RecipeException.class, () -> r1.setAmtSugar("text"));
     }
     @Test
     public void testSetPrice() {
@@ -115,11 +136,23 @@ public class RecipeTest {
     @Test
     public void testSetPriceException() {
         assertThrows(RecipeException.class, () -> r1.setPrice("-23"));
+        assertThrows(RecipeException.class, () -> r1.setPrice("text"));
     }
     @Test
     public void TestHashCode() {
         int hash = 31 + (r1.getName().hashCode());
         assertEquals(hash, r1.hashCode());
+    }
+    @Test
+    public void testEquals() {
+        //Cannot test equals when name is null
+        String str = "TEST";
+       assertFalse(r1.equals(str));
+       assertTrue(r1.equals(r2));
+    }
+    @Test
+    public void testToString() {
+        assertEquals(r1.getName(), r1.toString());
     }
     @Test
     public void getNameTest() {

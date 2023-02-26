@@ -104,13 +104,29 @@ public class CoffeeMakerTest {
     }
 
     @Test
-    public void testMakeCoffee() {
+    public void testMakeCoffeeNoChange() {
         cm.addRecipe(r1);
         assertEquals(0, cm.makeCoffee(0, 50));
+    }
+    @Test
+    public void testMakeCoffeeChangeBack() {
+        cm.addRecipe(r1);
         assertEquals(10, cm.makeCoffee(0, 60));
+    }
+    @Test
+    public void testMakeCoffeeInsufficientFunds() {
+        cm.addRecipe(r1);
         assertEquals(40, cm.makeCoffee(0, 40));
     }
-
+    @Test
+    public void testMakeCoffeeNull() {
+        assertEquals(50, cm.makeCoffee(0,50));
+    }
+    @Test
+    public void testMakeCoffeeNotEnoughIngredients() {
+        cm.addRecipe(r2);
+        assertEquals(75, cm.makeCoffee(0,75));
+    }
     @Test
     public void testGetRecipes() {
         cm.addRecipe(r1);
