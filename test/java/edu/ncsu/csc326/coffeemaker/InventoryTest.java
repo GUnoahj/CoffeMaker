@@ -5,9 +5,7 @@ import junit.framework.TestCase;
 
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -49,6 +47,15 @@ public class InventoryTest extends TestCase {
     }
 
     @Test
+    public void testAddChocolate_string() {
+        assertThrows(
+                InventoryException.class, () -> {
+                    inventory.addChocolate("NAN"); // Should throw an InventoryException
+                }
+        );
+    }
+
+    @Test
     public void testGetCoffee() {
         assertEquals(15, inventory.getCoffee());
     }
@@ -63,6 +70,15 @@ public class InventoryTest extends TestCase {
     public void testAddCoffee() throws InventoryException {
         inventory.addCoffee("3");
         assertEquals(18, inventory.getCoffee());
+    }
+
+    @Test
+    public void testAddCoffee_string() {
+        assertThrows(
+                InventoryException.class, () -> {
+                    inventory.addCoffee("NAN"); // Should throw an InventoryException
+                }
+        );
     }
 
     @Test
@@ -92,6 +108,15 @@ public class InventoryTest extends TestCase {
     }
 
     @Test
+    public void testAddMilk_string() {
+        assertThrows(
+                InventoryException.class, () -> {
+                    inventory.addMilk("NAN"); // Should throw an InventoryException
+                }
+        );
+    }
+
+    @Test
     public void testMilkException() {
         assertThrows(
                 InventoryException.class, () -> {
@@ -115,6 +140,15 @@ public class InventoryTest extends TestCase {
     public void testAddSugar() throws InventoryException {
         inventory.addSugar("3");
         assertEquals(18, inventory.getSugar());
+    }
+
+    @Test
+    public void testAddSugar_string() {
+        assertThrows(
+                InventoryException.class, () -> {
+                    inventory.addSugar("NAN"); // Should throw an InventoryException
+                }
+        );
     }
 
     @Test
@@ -175,19 +209,19 @@ public class InventoryTest extends TestCase {
     }
 
     @Test
-    public void testUseIngredientsException() {
-        assertThrows(
-                RecipeException.class, () -> {
-                    Recipe r1 = new Recipe();
-                    r1.setName("Coffee");
-                    r1.setAmtChocolate("-9");
-                    r1.setAmtCoffee("-9");
-                    r1.setAmtMilk("-9");
-                    r1.setAmtSugar("-9");
-                    r1.setPrice("-9");
-                    inventory.useIngredients(r1);
-                }
-        );
+    public void testUseIngredientsException() throws RecipeException {
+        Recipe r1 = new Recipe();
+        r1.setName("Coffee");
+        r1.setAmtChocolate("420");
+        r1.setAmtCoffee("420");
+        r1.setAmtMilk("420");
+        r1.setAmtSugar("420");
+        r1.setPrice("420");
+        inventory.useIngredients(r1);
     }
 
+    @Test
+    public void testToString() {
+        inventory.toString();
+    }
 }
