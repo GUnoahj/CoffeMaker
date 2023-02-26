@@ -55,10 +55,9 @@ public class CoffeeMakerTest {
     @Test
     public void EditRecipeTest() {
         cm.addRecipe(r1);
-        cm.addRecipe(r2);
-        String oldName = r1.getName();
+        String newName = r2.getName();
         cm.editRecipe(0, r2);
-        assertEquals(oldName, cm.getRecipes()[0].getName());
+        assertEquals(newName, cm.getRecipes()[0].getName());
     }
     @Test
     public void testCheckInventory() {
