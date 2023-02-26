@@ -15,7 +15,7 @@ public class RecipeTest {
     @Before
     public void setUp() throws Exception{
         r1 = new Recipe();
-        r1.setName("TestCoffee");
+        r1.setName("Coffee");
         r1.setAmtChocolate("0");
         r1.setAmtMilk("1");
         r1.setAmtCoffee("2");
@@ -24,19 +24,26 @@ public class RecipeTest {
     }
     @Test
     public void testSetName() {
-
         String newName = "NewCoffeeName";
-        r1.setName(newName);
+        try {
+            r1.setName(newName);
+        }
+        catch (RecipeException e) {
+            fail("Not good");
+        }
         assertEquals(newName, r1.getName());
-            //fail("Exception thrown");
     }
     @Test
     public void testFailSetName() {
         //setName method only checks for null value, not empty string
-        String oldName = r1.getName();
+        /*String oldName = r1.getName();
         String newName = "";
         r1.setName(newName);
         assertEquals(oldName, r1.getName());
+         */
+        assertThrows(RecipeException.class, () -> r1.setName(""));
+        assertThrows(RecipeException.class, () -> r1.setName(null));
+
     }
     @Test
     public void testSetAmtChocolate() {
@@ -76,9 +83,24 @@ public class RecipeTest {
         }
         assertEquals(3, r1.getAmtMilk());
     }
+
     @Test
     public void testSetAmtMilkException() {
         assertThrows(RecipeException.class, () -> r1.setAmtMilk("-3"));
+    }
+    @Test
+    public void testSetAmtSugar() {
+        try {
+            r1.setAmtSugar("4");
+        }
+        catch (RecipeException e) {
+            fail("Not good");
+        }
+        assertEquals(4, r1.getAmtMilk());
+    }
+    @Test
+    public void testSetAmtSugarException() {
+        assertThrows(RecipeException.class, () -> r1.setAmtMilk("-4"));
     }
     @Test
     public void testSetPrice() {
